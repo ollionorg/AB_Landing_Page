@@ -231,15 +231,17 @@
     </header>
 
     <!-- Desktop Header -->
-    <header class="hidden md:flex bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50 items-center h-20 px-8 relative">
-        <div class="absolute left-8 top-1/2 -translate-y-1/2">
+    <header class="hidden md:flex items-center justify-between bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50 h-20 px-8 relative">
+        
+        <div class="flex-shrink-0">
             <a href="#" class="flex items-center space-x-4">
                 <img src="images/Bank_Aladin_logo.webp" alt="Bank Aladin Logo" class="h-8 w-auto">
                 <span class="text-2xl accent-color font-light">×</span>
                 <img src="images/ollion-logo-black.png" alt="Ollion Logo" class="h-6 w-auto">
             </a>
         </div>
-        <nav id="desktop-nav" class="flex items-center space-x-10 text-base font-medium text-zinc-700 mx-auto">
+
+        <nav id="desktop-nav" class="hidden xl:flex items-center justify-center space-x-8 text-base font-medium text-zinc-700">
             <a href="#overview" class="desktop-nav-link">Overview</a>
             <a href="#solution" class="desktop-nav-link">Solution</a>
             <a href="#stance" class="desktop-nav-link">Stance AI</a>
@@ -248,6 +250,24 @@
             <a href="#investment" class="desktop-nav-link">Investment</a>
             <a href="#contact" class="desktop-nav-link">Contact</a>
         </nav>
+
+        <div class="xl:hidden flex items-center">
+            <button id="menu-toggle-btn" class="p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="dropdown-menu" class="hidden absolute top-full left-0 right-0 bg-white shadow-lg rounded-b-lg p-4">
+            <a href="#overview" class="block text-center py-2 text-gray-700 hover:bg-gray-50 rounded-md">Overview</a>
+            <a href="#solution" class="block text-center py-2 text-gray-700 hover:bg-gray-50 rounded-md">Solution</a>
+            <a href="#stance" class="block text-center py-2 text-gray-700 hover:bg-gray-50 rounded-md">Stance AI</a>
+            <a href="#deliverables" class="block text-center py-2 text-gray-700 hover:bg-gray-50 rounded-md">Deliverables</a>
+            <a href="#engagement" class="block text-center py-2 text-gray-700 hover:bg-gray-50 rounded-md">Engagement</a>
+            <a href="#investment" class="block text-center py-2 text-gray-700 hover:bg-gray-50 rounded-md">Investment</a>
+            <a href="#contact" class="block text-center py-2 text-gray-700 hover:bg-gray-50 rounded-md">Contact</a>
+        </div>
     </header>
 
     <main>
@@ -665,7 +685,7 @@
                 <p class="mt-2 text-gray-600">Enter your details below, and we'll send the proposal directly to your inbox.</p>
                 
                 <form id="proposal-form" class="mt-6 space-y-4">
-                    <input type="hidden" name="access_key" value="64d038ec-eee1-440e-9ff5-992eac2f9021">
+                    <input type="hidden" name="access_key" value="36718a0a-ad63-4ac8-a0b9-eabf92c5fe28">
                     <input type="hidden" name="subject" value="New Proposal Request from Bank Aladin Page">
                     <input type="hidden" name="from_name" value="Ollion Website">
 
@@ -828,8 +848,6 @@
             });
         });
 
-        // Add this inside your main <script> tag at the bottom
-
         // --- NEW: Accordion Logic ---
         const accordionToggles = document.querySelectorAll('.accordion-toggle');
 
@@ -846,6 +864,23 @@
                 toggle.classList.toggle('is-open');
             });
         });
+
+        // --- NEW: Hamburger Menu Logic ---
+        const menuToggleBtn = document.getElementById('menu-toggle-btn');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        if (menuToggleBtn && dropdownMenu) {
+            menuToggleBtn.addEventListener('click', () => {
+                dropdownMenu.classList.toggle('hidden');
+            });
+
+            // Close dropdown when a link is clicked (for single-page apps)
+            dropdownMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    dropdownMenu.classList.add('hidden');
+                });
+            });
+        }
     </script>
 </body>
 </html>
